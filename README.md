@@ -14,3 +14,5 @@ Install
 `bower install`
 
 `ionic serve`
+
+<img href="docs/ionic-nav-example.gif" width="480" height="626" alt="example"/>
