@@ -15,4 +15,4 @@ Install
 
 `ionic serve`
 
-![](https://github.com/trazek/ionic-modal-nav/blob/master/docs/ionic-nav-example.gif?raw=true "Example")
+![Example](docs/ionic-nav-example.gif?raw=true "Example")
