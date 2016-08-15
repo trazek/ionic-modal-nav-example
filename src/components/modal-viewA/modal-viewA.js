@@ -10,8 +10,6 @@ class ModalViewAController {
         IonicModalNavService.onBack((data) => {
             console.log(">>> got the data from previous state", data);
         });
-        
-        console.log(">>> $state", $state);
     }
 
     $onInit() {}

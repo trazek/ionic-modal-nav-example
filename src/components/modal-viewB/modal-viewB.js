@@ -1,10 +1,11 @@
 import template from './modal-viewB.html';
 
 class ModalViewBController {
-    constructor($ionicHistory, IonicModalNavService) {
+    constructor($ionicHistory, $state, IonicModalNavService) {
         'ngInject';
-        
+
         this.IonicModalNavService = IonicModalNavService;
+        console.log(">>> ", $state);
     }
 
     $onInit() {}
