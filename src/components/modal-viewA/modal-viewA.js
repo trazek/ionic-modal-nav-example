@@ -1,7 +1,7 @@
 import template from './modal-viewA.html';
 
 class ModalViewAController {
-    constructor($ionicHistory, IonicModalNavService) {
+    constructor($ionicHistory, $state, IonicModalNavService) {
         'ngInject';
 
         this.$ionicHistory = $ionicHistory;
@@ -10,6 +10,8 @@ class ModalViewAController {
         IonicModalNavService.onBack((data) => {
             console.log(">>> got the data from previous state", data);
         });
+        
+        console.log(">>> $state", $state);
     }
 
     $onInit() {}
@@ -21,7 +23,7 @@ class ModalViewAController {
     }
 
     next(viewName) {
-        this.IonicModalNavService.go('modal-viewB');
+        this.IonicModalNavService.go('modal-viewB', {id: "Woot"});
     }
 }
 

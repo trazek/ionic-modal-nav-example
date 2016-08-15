@@ -40,6 +40,7 @@ angular.module('app.states')
         });
 
         $stateProvider.state('modal-viewB', {
+            url: '/view/:id',
             views: {
                 'ionic-modal-nav@': {
                     template: `
