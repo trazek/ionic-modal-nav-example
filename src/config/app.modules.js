@@ -14,8 +14,12 @@ angular.module('app', [
     'app.components',
     'app.states',
     'IonicModalNav'
-]);
-
+])
+.config((IonicModalNavServiceProvider) => {
+//    IonicModalNavServiceProvider.setModalOptions({
+//        backdropClickToClose: false
+//    });
+});
 
 angular.module('app.run', []);
 angular.module('app.components', []);
@@ -28,4 +32,3 @@ angular.module('app.components').component(NextBaseComponent.name, NextBaseCompo
 
 angular.module('app.components').component(ModalViewAComponent.name, ModalViewAComponent.def);
 angular.module('app.components').component(ModalViewBComponent.name, ModalViewBComponent.def);
-
