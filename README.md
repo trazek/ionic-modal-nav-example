@@ -1,4 +1,4 @@
-[![](https://img.shields.io/badge/seen%20on%20npm-v1.1.3-green.svg)](https://www.npmjs.com/package/ionic-modal-nav)
+[![](https://img.shields.io/badge/seen%20on%20npm-v1.2.0-green.svg)](https://www.npmjs.com/package/ionic-modal-nav)
 
 
 Ionic Modal Nav Example
