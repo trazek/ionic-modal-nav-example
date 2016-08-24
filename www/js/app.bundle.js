@@ -48,9 +48,9 @@
 
 	__webpack_require__(1);
 
-	__webpack_require__(11);
+	__webpack_require__(15);
 
-	__webpack_require__(12);
+	__webpack_require__(16);
 
 /***/ },
 /* 1 */
@@ -62,11 +62,15 @@
 
 	var _nextBase = __webpack_require__(4);
 
-	var _modalViewA = __webpack_require__(6);
+	var _sideNav = __webpack_require__(6);
 
-	var _modalViewB = __webpack_require__(8);
+	var _nextSideNav = __webpack_require__(8);
 
-	__webpack_require__(10);
+	var _modalViewA = __webpack_require__(10);
+
+	var _modalViewB = __webpack_require__(12);
+
+	__webpack_require__(14);
 
 	angular.module('app', ['ionic', 'app.run', 'app.components', 'app.states', 'IonicModalNav']).config(function (IonicModalNavServiceProvider) {
 	    //    IonicModalNavServiceProvider.setModalOptions({
@@ -84,6 +88,9 @@
 
 	angular.module('app.components').component(_modalViewA.ModalViewAComponent.name, _modalViewA.ModalViewAComponent.def);
 	angular.module('app.components').component(_modalViewB.ModalViewBComponent.name, _modalViewB.ModalViewBComponent.def);
+
+	angular.module('app.components').component(_sideNav.SideNavComponent.name, _sideNav.SideNavComponent.def);
+	angular.module('app.components').component(_nextSideNav.NextSideNavComponent.name, _nextSideNav.NextSideNavComponent.def);
 
 /***/ },
 /* 2 */
@@ -140,7 +147,7 @@
 /* 3 */
 /***/ function(module, exports) {
 
-	module.exports = "<ion-content class=\"has-header\">\n    <div class=\"row\">\n        <div class=\"col\">\n            <button class=\"button button-positive\" ng-click=\"$ctrl.IonicModalNavService.show('modal-viewA')\">Open Modal</button>\n        </div>\n        <div class=\"col\">\n            <button class=\"button button-positive\" ui-sref=\"next-base\">Next Base</button>\n        </div>\n    </div>\n</ion-content>"
+	module.exports = "<ion-content class=\"has-header\">\n    <div class=\"row\">\n        <div class=\"col\">\n            <button class=\"button button-positive\" ng-click=\"$ctrl.IonicModalNavService.show('modal-viewA')\">Open Modal</button>\n        </div>\n        <div class=\"col\">\n            <button class=\"button button-positive\" ui-sref=\"next-base\">Next Base</button>\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col\">\n            <button class=\"button button-energized\" ui-sref=\"side-nav\">To Side Nav</button>\n        </div>\n    </div>\n</ion-content>"
 
 /***/ },
 /* 4 */
@@ -204,11 +211,122 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.SideNavComponent = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _sideNav = __webpack_require__(7);
+
+	var _sideNav2 = _interopRequireDefault(_sideNav);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var SideNavController = function () {
+	    function SideNavController($ionicSideMenuDelegate, IonicModalNavService) {
+	        'ngInject';
+
+	        _classCallCheck(this, SideNavController);
+
+	        this.$ionicSideMenuDelegate = $ionicSideMenuDelegate;
+	        this.IonicModalNavService = IonicModalNavService;
+
+	        this.IonicModalNavService.onClose(function (data) {
+	            console.log(">>> reacting to closing", data);
+	        });
+	    }
+
+	    _createClass(SideNavController, [{
+	        key: '$onInit',
+	        value: function $onInit() {}
+	    }]);
+
+	    return SideNavController;
+	}();
+
+	var SideNavComponent = exports.SideNavComponent = {
+	    name: 'sideNav',
+	    def: {
+	        controller: SideNavController,
+	        template: _sideNav2.default,
+	        bindings: {}
+	    }
+	};
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	module.exports = "<ion-side-menus enable-menu-with-back-views=\"true\">\n    <!-- Left menu -->\n    <ion-side-menu side=\"left\">\n        <ion-header-bar class=\"bar-assertive\">\n            <h1 class=\"title\">Left Menu</h1>\n        </ion-header-bar>\n\n        <ion-content>\n            <ion-list>\n                <ion-item ui-sref=\"next-side-nav\">\n                    To Side Nav State #1\n                </ion-item>\n            </ion-list>\n        </ion-content>\n    </ion-side-menu>\n\n    <ion-side-menu-content>\n        <ion-nav-bar class=\"bar-stable\">\n            <ion-nav-buttons side=\"left\">\n                <!-- Toggle left side menu -->\n                <button menu-toggle=\"left\" class=\"button button-icon icon ion-navicon\"></button>\n            </ion-nav-buttons>\n        </ion-nav-bar>\n\n        <ion-view>\n            <ion-content class=\"has-header\">\n                <div class=\"row\">\n                    <div class=\"col\">\n                        <button class=\"button button-positive\" ng-click=\"$ctrl.$ionicSideMenuDelegate.toggleLeft()\">Open Left</button>\n                    </div>\n                    <div class=\"col\">\n                        <button class=\"button button-energized\" ui-sref=\"base\">To Base State</button>\n                    </div>\n                </div>\n            </ion-content>\n        </ion-view>\n    </ion-side-menu-content>\n\n</ion-side-menus>"
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.NextSideNavComponent = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _nextSideNav = __webpack_require__(9);
+
+	var _nextSideNav2 = _interopRequireDefault(_nextSideNav);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var NextSideNavController = function () {
+	    function NextSideNavController($ionicHistory, IonicModalNavService) {
+	        'ngInject';
+
+	        _classCallCheck(this, NextSideNavController);
+
+	        this.IonicModalNavService = IonicModalNavService;
+	    }
+
+	    _createClass(NextSideNavController, [{
+	        key: '$onInit',
+	        value: function $onInit() {}
+	    }]);
+
+	    return NextSideNavController;
+	}();
+
+	var NextSideNavComponent = exports.NextSideNavComponent = {
+	    name: 'nextSideNav',
+	    def: {
+	        controller: NextSideNavController,
+	        template: _nextSideNav2.default,
+	        bindings: {}
+	    }
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = "<ion-content class=\"has-header\">\n    <div class=\"row\">\n        <div class=\"col\">\n            <button class=\"button button-positive\" ng-click=\"$ctrl.IonicModalNavService.show('modal-viewA')\">Open Modal</button>\n        </div>\n    </div>\n</ion-content>"
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	exports.ModalViewAComponent = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _modalViewA = __webpack_require__(7);
+	var _modalViewA = __webpack_require__(11);
 
 	var _modalViewA2 = _interopRequireDefault(_modalViewA);
 
@@ -260,13 +378,13 @@
 	};
 
 /***/ },
-/* 7 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = "<ion-header-bar class=\"bar-stable\">\n    <h1 class=\"title\">Modal View A</h1>\n    <div class=\"buttons\">\n        <button class=\"button button-clear\" ng-click=\"$ctrl.hide()\">Close</button>\n    </div>\n</ion-header-bar>\n<ion-content class=\"has-header\">\n    <div class=\"row\">\n        <div class=\"col\">\n            <button class=\"button button-positive\" ng-click=\"$ctrl.next()\">Next Modal State</button>\n        </div>\n    </div>\n</ion-content>"
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -278,7 +396,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _modalViewB = __webpack_require__(9);
+	var _modalViewB = __webpack_require__(13);
 
 	var _modalViewB2 = _interopRequireDefault(_modalViewB);
 
@@ -322,13 +440,13 @@
 	};
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = "<ion-header-bar class=\"bar-stable\">\n    <div class=\"buttons\">\n        <button class=\"button button-clear\" ng-click=\"$ctrl.goBack()\">Back</button>\n    </div>\n    <h1 class=\"title\">Modal View B</h1>\n    <div class=\"buttons\">\n        <button class=\"button button-clear\" ng-click=\"$ctrl.IonicModalNavService.hide({data:'123'})\">Close</button>\n    </div>\n</ion-header-bar>\n<ion-content class=\"has-header\">\n    <div class=\"row\">\n        <div class=\"col\">\n            NO WHERE LEFT TO GO\n        </div>\n    </div>\n</ion-content>"
 
 /***/ },
-/* 10 */
+/* 14 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -604,7 +722,7 @@
 	exports.default = moduleName;
 
 /***/ },
-/* 11 */
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -649,11 +767,21 @@
 	        }
 	    });
 
+	    $stateProvider.state('side-nav', {
+	        url: '/side-nav',
+	        template: '\n                <ion-view view-title=\'Side Nav State\'>\n                    <side-nav></side-nav>\n                </ion-view>'
+	    });
+
+	    $stateProvider.state('next-side-nav', {
+	        url: '/next-side-nav',
+	        template: '\n                <ion-view view-title=\'Next Side Nav State\'>\n                    <next-side-nav></next-side-nav>\n                </ion-view>'
+	    });
+
 	    $urlRouterProvider.otherwise('/base');
 	});
 
 /***/ },
-/* 12 */
+/* 16 */
 /***/ function(module, exports) {
 
 	'use strict';

@@ -53,5 +53,23 @@ angular.module('app.states')
             }
         });
 
+        $stateProvider.state('side-nav', {
+            url: '/side-nav',
+            template: `
+                <ion-view view-title='Side Nav State'>
+                    <side-nav></side-nav>
+                </ion-view>`
+        });
+
+    
+        $stateProvider.state('next-side-nav', {
+            url: '/next-side-nav',
+            template: `
+                <ion-view view-title='Next Side Nav State'>
+                    <next-side-nav></next-side-nav>
+                </ion-view>`
+        });
+
+    
         $urlRouterProvider.otherwise('/base');
     });
